@@ -28,7 +28,7 @@ if args.mode == 'parallel':
 
     elapsed_time_parallel = (time.time() - t)
     print("time = ", elapsed_time_parallel)
-    os.killpg(os.getpgid(popen.pid), signal.SIGTERM)
+    #os.killpg(os.getpgid(popen.pid), signal.SIGTERM)
 
 else:
     # Execute sequentially
@@ -43,6 +43,6 @@ else:
         popen.wait()
     elapsed_time_sequential = (time.time() - t)
     print("time = ", elapsed_time_sequential)
-    os.killpg(os.getpgid(popen.pid), signal.SIGTERM)
+    #os.killpg(os.getpgid(popen.pid), signal.SIGTERM)
 
 

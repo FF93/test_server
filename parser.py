@@ -1,6 +1,9 @@
 import argparse
 import subprocess
 import time
+import os
+import signal
+
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--number', help='number of executions', type=int, default=4)
@@ -25,7 +28,7 @@ if args.mode == 'parallel':
 
     elapsed_time_parallel = (time.time() - t)
     print("time = ", elapsed_time_parallel)
-
+    os.killpg(os.getpgid(popen.pid), signal.SIGTERM)
 
 else:
     # Execute sequentially
@@ -40,5 +43,6 @@ else:
         popen.wait()
     elapsed_time_sequential = (time.time() - t)
     print("time = ", elapsed_time_sequential)
+    os.killpg(os.getpgid(popen.pid), signal.SIGTERM)
 
 
